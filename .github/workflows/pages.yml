@@ -24,8 +24,8 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v2
       - run: |
-          cp *.jpg out/
           mkdir out
+          cp *.jpg out/
           for f in *.md;
             do pandoc "$f" -s -o out/"${f%.*}".html;
           done
