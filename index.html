@@ -4,12 +4,27 @@
 <head>
     <link rel="stylesheet" href="/style.css">
     <script>
-        console.log('Hello world');
+        fetch('https://api.kostavkino.online:8080/macs')
+            .then(x => x.json())
+            .then(x => {
+                const macs = document.getElementById('macs');
+
+                function insertMac(mac) {
+                    const myDiv = document.createElement('div');
+                    myDiv.innerHTML = mac;
+                    macs.appendChild(myDiv);
+                }
+
+                x.map(insertMac)
+            });
     </script>
 </head>
 
 <body>
     <img src="/80s-vibe.jpg">
+    <section id="macs">
+        <h2>Who's home?</h2>
+    </section>
 </body>
 
 </html>
