@@ -28,9 +28,6 @@ jobs:
           cp *.jpg out/
           cp *.css out/
           cp *.html out/
-          for f in *.md;
-            do pandoc "$f" -s --css style.css --include-in-header header.html -o out/"${f%.*}".html;
-          done
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
