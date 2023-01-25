@@ -6,16 +6,23 @@
     <script>
         fetch('https://api.kostavkino.online:8080/macs')
             .then(x => x.json())
-            .then(x => {
-                const macs = document.getElementById('macs');
+            .then(label2macs => {
+                const macsDom = document.getElementById('macs');
 
-                function insertMac(mac) {
-                    const myDiv = document.createElement('div');
-                    myDiv.innerHTML = mac;
-                    macs.appendChild(myDiv);
+                for (const [label, macs] of Object.entries(label2macs)) {
+                    const sectionDom = document.createElement('div');
+                    const h3Dom = document.createElement('h3');
+                    h3Dom.innerHTML = label;
+                    sectionDom.appendChild(h3Dom);
+
+                    for (mac of macs) {
+                        const macDom = document.createElement('div');
+                        macDom.innerHTML = mac;
+                        sectionDom.appendChild(macDom);
+                    }
+
+                    macsDom.appendChild(sectionDom);
                 }
-
-                x.map(insertMac)
             });
     </script>
 </head>
